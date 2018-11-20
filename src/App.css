@@ -1,3 +1,11 @@
+/* @font-face {
+    font-family: 'guru_meditation_nbpregular';
+    src: url('./assets/gurufont/guru0-webfont.woff2') format('woff2'),
+         url('./assets/gurufont/guru0-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+} */
+
 .App {
   text-align: center;
 }

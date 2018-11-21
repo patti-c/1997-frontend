@@ -1,11 +1,18 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'px_sans_nouveaux', sans-serif;
+}
+
+input {
+  font-family: 'px_sans_nouveaux', sans-serif;
+}
+
+@font-face {
+  font-family: 'px_sans_nouveaux';
+  src: url('./assets/fonts/px_sans_nouveaux/px_sans_nouveaux.woff2') format('woff2'),
+       url('./assets/fonts/px_sans_nouveaux/px_sans_nouveaux.woff') format('woff'),
+       url('./assets/fonts/px_sans_nouveaux/px_sans_nouveaux.ttf') format('truetype');
 }
 
 code {

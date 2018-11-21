@@ -1,0 +1,10 @@
+.column {
+  display: inline-block;
+  text-align: center;
+  margin: 15px 50px;
+  font-size: .8rem;
+}
+
+.signin-or-create {
+  min-width: 400px;
+}

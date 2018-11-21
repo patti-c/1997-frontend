@@ -1,0 +1,25 @@
+.window {
+  background-color: #BDBDBD;
+  display: inline-block;
+}
+
+.bluebar {
+  background-color: #00017B;
+  color: white;
+  width: auto;
+  padding-left: 10px;
+  padding-bottom: 3px;
+}
+
+.close-window {
+  background-color: #BDBDBD;
+  font-weight: bold;
+  height: 23px;
+  text-align: center;
+  margin: auto;
+  font-size: 1.1rem;
+  float: right;
+  margin: 5px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}

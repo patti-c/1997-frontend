@@ -1,0 +1,15 @@
+.desktop-icons-container {
+  display: inline-block;
+  margin: 20px;
+}
+
+.desktop-icon {
+  margin: 20px;
+  width: 76px;
+  text-align: center;
+}
+
+.icon-image {
+  display: block;
+  margin: auto;
+}

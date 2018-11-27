@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Navbar from './containers/Navbar/Navbar.js'
-import Signin from './containers/Signin/Signin'
 import DesktopIconContainer from './containers/DesktopIconContainer/DesktopIconContainer'
+import { loginUser } from './redux/actions'
 import { connect } from 'react-redux'
 import Window from './containers/Window/Window'
 
@@ -16,7 +16,22 @@ class App extends Component {
   }
 
   renderWindows() {
-    return this.props.windows.map(windowName => <Window name={windowName}/>)
+    return this.props.windows.map(w => <Window key={w.id} name={w.name} id={w.id} data={w.data}/>)
+  }
+
+  componentDidMount(){
+    let token = localStorage.getItem('token')
+    if(token){
+      fetch(`http://localhost:3000/api/v1/userdata`, {
+        headers: {
+          "Authorization" : `Bearer ${token}`
+        }
+      }).then(res => res.json())
+        .then(json => {
+          console.log(json)
+          this.props.loginUser(json.user)
+        })
+    }
   }
 
   render() {
@@ -35,4 +50,10 @@ const mapStateToProps = (state) => {
   return {windows: state.windows}
 }
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => {
+  return {
+    loginUser: (user) => dispatch(loginUser(user))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

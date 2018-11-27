@@ -4,11 +4,15 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux'
+import { ActionCableProvider } from 'react-actioncable-provider'
 import store from './redux/store'
+import { API_WS_ROOT } from './constants/constants'
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <ActionCableProvider url={ API_WS_ROOT }>
+      <App />
+    </ActionCableProvider>
   </Provider>,
   document.getElementById('root')
 );

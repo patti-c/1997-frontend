@@ -8,7 +8,7 @@ class DesktopIconContainer extends Component {
   render() {
     return (
       <div className="desktop-icons-container">
-        <div className="desktop-icon" onDoubleClick={() => this.props.openWindow('Sign In')}>
+        <div className="desktop-icon" onDoubleClick={() => this.props.openWindow({name: 'Sign In'})}>
           <DesktopIcon fileName={'windowsglobe'}/>
           <label>Sign in</label>
         </div>
@@ -16,7 +16,7 @@ class DesktopIconContainer extends Component {
           <DesktopIcon fileName={'largehelpbook'}/>
           <label>About</label>
         </div>
-        <div className="desktop-icon">
+        <div className="desktop-icon" onDoubleClick={() => this.props.openWindow({name: 'Friends List'})}>
           <DesktopIcon fileName={'people'}/>
           <label>Friends</label>
         </div>

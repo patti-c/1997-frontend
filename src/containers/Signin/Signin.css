@@ -2,9 +2,24 @@
   display: inline-block;
   text-align: center;
   margin: 15px 50px;
+  flex: 50%;
   font-size: .8rem;
 }
 
 .signin-or-create {
-  min-width: 400px;
+  display: flex;
+}
+
+.choice {
+  margin: 5px;
+  display: block;
+  width: 80px;
+}
+
+.buttons {
+  /* margin: 0; */
+  /* position: absolute;
+  top: 50%;
+  left: 25%;
+  transform: translate(-50%, -50%); */
 }

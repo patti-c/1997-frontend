@@ -1,9 +1,17 @@
-function openWindow(windowName) {
-  return { type: 'OPEN_WINDOW', windowName }
+function openWindow(payload) {
+  return { type: 'OPEN_WINDOW', payload }
 }
 
-function closeWindow(){
-  return { type: 'CLOSE_WINDOW' }
+function closeWindow(windowId){
+  return { type: 'CLOSE_WINDOW', windowId }
 }
 
-export { openWindow, closeWindow }
+function loginUser(user) {
+  return { type: 'LOGIN_USER', user}
+}
+
+function logoutUser() {
+  return { type: 'LOGOUT_USER' }
+}
+
+export { openWindow, closeWindow, loginUser, logoutUser }

@@ -1,6 +1,8 @@
 .desktop-icons-container {
   display: inline-block;
   margin: 20px;
+  top: 0px;
+  position: absolute;
 }
 
 .desktop-icon {

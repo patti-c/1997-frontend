@@ -3,8 +3,8 @@ import './Conversation.css'
 import Chatbox from '../../components/Chatbox/Chatbox'
 import MessageBox from '../MessageBox/MessageBox'
 import { ActionCable } from 'react-actioncable-provider';
-import { API_ROOT } from '../../constants/constants'
 import Adapter from '../../Adapter'
+import { connect } from 'react-redux'
 const api = new Adapter()
 
 class Conversation extends Component {
@@ -23,25 +23,35 @@ class Conversation extends Component {
     let token = localStorage.getItem('token')
     let body = { username: this.props.data.username }
     api.postWithToken(token, '/get_conversation', body)
-      .then(convo => this.setState({conversation: convo}))
+      .then(convo => this.setState({
+        conversation: convo,
+        messages: convo.messages
+      }))
   }
 
   render() {
     return (
       <div className="conversation">
-      {this.props.conversation ?
+      {this.state.conversation ?
+        <>
         <ActionCable
           channel={{ channel: 'MessagesChannel',
-                     conversation: this.props.conversation.id}}
+                     conversation: this.state.conversation.id}}
           onReceived = {this.handleReceivedMessage}
         />
+        <MessageBox conversation={this.state.conversation} messages={this.state.messages} />
+        <Chatbox user={this.props.user} conversation = {this.state.conversation}/>
+        </>
         :
         null}
-        <MessageBox messages={this.state.messages} />
-        <Chatbox conversation = {this.props.conversation}/>
+
       </div>
     )
   }
 }
 
-export default Conversation
+const mapStateToProps = state => {
+  return {user: state.user.username}
+}
+
+export default connect(mapStateToProps)(Conversation)

@@ -1,3 +1,33 @@
 .friends-list-container {
-  margin-left: 20px;
+  background: white;
+  height: 100%;
+  padding-left: 10px;
+  overflow: auto;
+}
+
+.your-friends-header {
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+
+.friends-list-body {
+  height: 65%;
+}
+
+.friends-list-container-container {
+  height: 100%;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
+  padding: 8px;
+}
+
+.friends-header-image {
+  width: 100%;
+}
+
+.friends-list-ul {
+  list-style-type: none;
+  padding-left: 20px;
+  margin-top: 0px;
 }

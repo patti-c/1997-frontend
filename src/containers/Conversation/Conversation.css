@@ -10,9 +10,15 @@
   resize: none;
 }
 
+form {
+  height: 100%;
+}
+
 .message-box {
   background: white;
   height: 60%;
+  overflow: auto;
+  font-size: 1em;
 }
 
 .chatbox-submit {

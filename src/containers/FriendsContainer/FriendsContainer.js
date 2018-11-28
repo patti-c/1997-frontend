@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import FriendListItem from '../../components/FriendListItem/FriendListItem'
 import './FriendsContainer.css'
 import { openWindow } from '../../redux/actions'
-import { API_ROOT } from '../../constants/constants'
+import headerImage from '../../assets/images/instantmessaging.png'
 
 class FriendsContainer extends Component {
 
@@ -17,20 +17,42 @@ class FriendsContainer extends Component {
       />)
   }
 
+  renderPendingRequests() {
+    return this.props.pending_requests.map(request =>
+      <li key={request}>{request}</li>
+    )
+  }
+
   render () {
     return (
-      <div className="friends-list-container">
-        <h3>
-        Your Friends
-        </h3>
-        {this.props.friends ? this.renderFriendsList() : null}
+      <div className="friends-list-body">
+        <img alt="instantaneous messaging header" className="friends-header-image" src={headerImage}/>
+        <div className="friends-list-container-container inverted-border">
+          <div className="friends-list-container oldschool-border">
+            <p className="your-friends-header">
+              Your Friends
+            </p>
+            <ul className="friends-list-ul">
+              {this.props.friends ? this.renderFriendsList() : null}
+            </ul>
+            <p className="your-friends-header">
+              Friend Requests
+            </p>
+            <ul className="friends-list-ul">
+              {this.props.pending_requests ? this.renderPendingRequests() : null}
+            </ul>
+          </div>
+        </div>
       </div>
     )
   }
 }
 
 const mapStateToProps = state => {
-  return {friends: state.user.friends}
+  return {
+    friends: state.user.friends,
+    pending_requests: state.user.friend_requests.pending_requests
+  }
 }
 
 const mapDispatchToProps = dispatch => {

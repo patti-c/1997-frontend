@@ -62,7 +62,7 @@ class Signin extends Component {
     api.genericPost('login', {user: userData}).then(json =>
       {if(json.jwt) {
         localStorage.setItem('token', json.jwt)
-        this.props.loginUser(json.user)
+        this.props.loginUser(json)
       }}
     )
   }

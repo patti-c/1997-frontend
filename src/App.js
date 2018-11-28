@@ -29,7 +29,7 @@ class App extends Component {
       }).then(res => res.json())
         .then(json => {
           console.log(json)
-          this.props.loginUser(json.user)
+          this.props.loginUser(json)
         })
     }
   }
@@ -52,7 +52,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loginUser: (user) => dispatch(loginUser(user))
+    loginUser: (payload) => dispatch(loginUser(payload))
   }
 }
 

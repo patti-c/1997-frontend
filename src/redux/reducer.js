@@ -15,7 +15,13 @@ const windowReducer = (state=[], action) => {
 const userReducer = (state={}, action) => {
   switch(action.type) {
     case 'LOGIN_USER':
-      return action.user
+      return {
+        ...action.payload.user,
+        friend_requests: {
+          pending_requests: action.payload.pending_requests,
+          desired_friendships: action.payload.desired_friendships
+        }
+      }
     case 'LOGOUT_USER':
       return {}
     default:

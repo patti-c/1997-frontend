@@ -3,8 +3,9 @@ import Signin from '../Signin/Signin'
 import Conversation from '../Conversation/Conversation'
 import Draggable from 'react-draggable'
 import FriendsContainer from '../FriendsContainer/FriendsContainer'
+import About from '../../components/About/About'
 import { connect } from 'react-redux'
-import { Resizable } from 'react-resizable'
+// import { Resizable } from 'react-resizable'
 import { closeWindow } from '../../redux/actions'
 import './Window.css'
 
@@ -27,12 +28,11 @@ class Window extends Component {
         break;
       case 'Friends List':
         this.setState({
-          height: 400,
+          height: 500,
           width: 250
         })
         break;
       case 'Conversation':
-        this.setState({})
         break;
       default:
         return null
@@ -48,24 +48,26 @@ class Window extends Component {
         return(<FriendsContainer />)
       case 'Conversation':
         return(<Conversation data={this.props.data}/>)
+      case 'About':
+        return(<About/>)
       default:
         return null
     }
   }
 
   render() {
+    console.log(`${this.props.name} window rendered`)
     return (
         <Draggable
           handle=".handle"
           bounds="body"
-          defaultPosition={{x: 200, y: 200}}
           position={null}
         >
             <div
               className="window inverted-border clearfix"
               style={{width: this.state.width + 'px', height: this.state.height + 'px'}}
             >
-              <div className="bluebar handle">{this.props.name}
+              <div className="bluebar handle"><span className="window-name">{this.props.name}</span>
                 <button
                   className="standard-button close-window inverted-border"
                   onClick={() => this.props.closeWindow(this.props.id)}

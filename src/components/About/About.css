@@ -1,0 +1,16 @@
+.about-page-container {
+  overflow: hidden;
+  width: 100%;
+}
+
+.about-image {
+  overflow: hidden;
+  position: absolute;
+  bottom: 2px;
+  left: 1px;
+}
+
+.about-p {
+  margin-left: 5px;
+  margin-top: 5px;
+}

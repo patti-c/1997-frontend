@@ -12,7 +12,7 @@ class DesktopIconContainer extends Component {
           <DesktopIcon fileName={'windowsglobe'}/>
           <label>Sign in</label>
         </div>
-        <div className="desktop-icon">
+        <div className="desktop-icon" onDoubleClick={() => this.props.openWindow({name: 'About'})}>
           <DesktopIcon fileName={'largehelpbook'}/>
           <label>About</label>
         </div>

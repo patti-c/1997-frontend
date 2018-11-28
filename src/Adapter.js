@@ -1,6 +1,7 @@
 import { HEADERS, API_ROOT } from './constants/constants'
 
 class Adapter {
+  
   genericPost(extension, payload) {
     const url = API_ROOT + extension
     const options = {
@@ -38,7 +39,7 @@ class Adapter {
       body: JSON.stringify(payload)
     }
     console.log(options)
-    return fetch(url, options).then(console.log)
+    return fetch(url, options)
   }
 
 }

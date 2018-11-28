@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import FriendListItem from '../../components/FriendListItem/FriendListItem'
+import FriendRequestItem from '../../components/FriendRequestItem/FriendRequestItem'
 import './FriendsContainer.css'
 import { openWindow } from '../../redux/actions'
 import headerImage from '../../assets/images/instantmessaging.png'
@@ -19,7 +20,7 @@ class FriendsContainer extends Component {
 
   renderPendingRequests() {
     return this.props.pending_requests.map(request =>
-      <li key={request}>{request}</li>
+      <FriendRequestItem adder={request} added={this.props.username}/>
     )
   }
 
@@ -49,9 +50,12 @@ class FriendsContainer extends Component {
 }
 
 const mapStateToProps = state => {
-  return {
-    friends: state.user.friends,
-    pending_requests: state.user.friend_requests.pending_requests
+  if(state.user.friends) {
+    return {
+      friends: state.user.friends,
+      pending_requests: state.user.friend_requests.pending_requests,
+      username: state.user.username
+    }
   }
 }
 

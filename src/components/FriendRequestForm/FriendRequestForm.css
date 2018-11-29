@@ -1,0 +1,16 @@
+.new-friend-button {
+  display: inline;
+  height: auto;
+  height: 25.5px;
+  margin-left: 5px;
+  vertical-align: top;
+  width: 62px;
+}
+
+.friends-request-form {
+  display: inline;
+}
+
+.friends-input {
+  display: inline;
+}

@@ -28,7 +28,7 @@ class Window extends Component {
         break;
       case 'Friends List':
         this.setState({
-          height: 500,
+          height: 550,
           width: 250
         })
         break;
@@ -62,6 +62,7 @@ class Window extends Component {
           handle=".handle"
           bounds="body"
           position={null}
+          defaultPosition={{x:100,y:100}}
         >
             <div
               className="window inverted-border clearfix"

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import FriendListItem from '../../components/FriendListItem/FriendListItem'
 import FriendRequestItem from '../../components/FriendRequestItem/FriendRequestItem'
+import FriendRequestForm from '../../components/FriendRequestForm/FriendRequestForm'
 import './FriendsContainer.css'
 import { openWindow } from '../../redux/actions'
 import headerImage from '../../assets/images/instantmessaging.png'
@@ -28,19 +29,20 @@ class FriendsContainer extends Component {
     return (
       <div className="friends-list-body">
         <img alt="instantaneous messaging header" className="friends-header-image" src={headerImage}/>
+        <FriendRequestForm adder={this.props.username}/>
         <div className="friends-list-container-container inverted-border">
           <div className="friends-list-container oldschool-border">
-            <p className="your-friends-header">
-              Your Friends
-            </p>
-            <ul className="friends-list-ul">
-              {this.props.friends ? this.renderFriendsList() : null}
-            </ul>
             <p className="your-friends-header">
               Friend Requests
             </p>
             <ul className="friends-list-ul">
               {this.props.pending_requests ? this.renderPendingRequests() : null}
+            </ul>
+            <p className="your-friends-header">
+              Your Friends
+            </p>
+            <ul className="friends-list-ul">
+              {this.props.friends ? this.renderFriendsList() : null}
             </ul>
           </div>
         </div>

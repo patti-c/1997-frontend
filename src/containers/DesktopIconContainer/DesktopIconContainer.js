@@ -5,6 +5,34 @@ import { connect } from 'react-redux'
 import { openWindow } from '../../redux/actions'
 
 class DesktopIconContainer extends Component {
+
+  constructor() {
+    super()
+    this.state = {
+      trashEmpty: true
+    }
+  }
+
+  componentDidMount() {
+    this.interval = setInterval(this.fillTrash, 20000)
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  fillTrash = () =>  {
+    this.setState({
+      trashEmpty: false
+    })
+  }
+
+  emptyTrash = () => {
+    this.setState({
+      trashEmpty: true
+    })
+  }
+
   render() {
     return (
       <div className="desktop-icons-container">
@@ -28,6 +56,13 @@ class DesktopIconContainer extends Component {
           <DesktopIcon fileName={'plastic-love-icon'}/>
           <label className="multiline-label">plastic_</label>
           <label className="multiline-label">love.mp3</label>
+        </div>
+        <div className="desktop-icon" onDoubleClick={this.emptyTrash} >
+          {this.state.trashEmpty ?
+            <DesktopIcon fileName={'recycle_bin_empty_cool-0'}/> :
+            <DesktopIcon fileName={'recycle_bin_full_cool-0'}/>
+          }
+          <label className="multiline-label">Recycle Bin</label>
         </div>
       </div>
     )

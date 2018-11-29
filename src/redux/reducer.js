@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import uuid from 'uuid'
+let newState
 
 const windowReducer = (state=[], action) => {
   switch (action.type) {
@@ -24,6 +25,15 @@ const userReducer = (state={}, action) => {
       }
     case 'LOGOUT_USER':
       return {}
+    case 'ACCEPT_REQUEST':
+      newState = state
+      newState.friends.push({username: action.friend})
+      newState.friend_requests.pending_requests = newState.friend_requests.pending_requests.filter(req => req !== action.friend)
+      return newState
+    case 'DENY_REQUEST':
+      newState = state
+      newState.friend_requests.pending_requests = newState.friend_requests.pending_requests.filter(req => req !== action.friend)
+      return newState
     default:
       return state
   }

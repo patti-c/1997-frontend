@@ -21,7 +21,7 @@ class FriendsContainer extends Component {
 
   renderPendingRequests() {
     return this.props.pending_requests.map(request =>
-      <FriendRequestItem adder={request} added={this.props.username}/>
+      <FriendRequestItem key={request} adder={request} added={this.props.username}/>
     )
   }
 

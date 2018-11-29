@@ -14,12 +14,12 @@ function logoutUser() {
   return { type: 'LOGOUT_USER' }
 }
 
-// function acceptFriendRequest(friend) {
-//   return { type: 'ACCEPT_REQUEST', friend }
-// }
-//
-// function denyFriendRequest(friend) {
-//   return { type: 'DENY_REQUEST', friend }
-// }
+function acceptFriendRequest(friend) {
+  return { type: 'ACCEPT_REQUEST', friend }
+}
 
-export { openWindow, closeWindow, loginUser, logoutUser }
+function denyFriendRequest(friend) {
+  return { type: 'DENY_REQUEST', friend }
+}
+
+export { openWindow, closeWindow, loginUser, logoutUser, acceptFriendRequest, denyFriendRequest }

@@ -3,6 +3,8 @@ body {
   padding: 0;
   font-family: 'px_sans_nouveaux', sans-serif;
   font-size: .8em;
+  height: 100vh;
+  overflow: hidden;
 }
 
 input {

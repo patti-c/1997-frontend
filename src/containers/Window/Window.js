@@ -4,6 +4,7 @@ import Conversation from '../Conversation/Conversation'
 import Draggable from 'react-draggable'
 import FriendsContainer from '../FriendsContainer/FriendsContainer'
 import About from '../../components/About/About'
+import PlasticLove from '../../components/PlasticLove/PlasticLove'
 import { connect } from 'react-redux'
 // import { Resizable } from 'react-resizable'
 import { closeWindow } from '../../redux/actions'
@@ -34,6 +35,11 @@ class Window extends Component {
         break;
       case 'Conversation':
         break;
+      case 'Plastic Love':
+        this.setState({
+          width: 280,
+          height: 360
+        })
       default:
         return null
     }
@@ -50,6 +56,8 @@ class Window extends Component {
         return(<Conversation data={this.props.data}/>)
       case 'About':
         return(<About/>)
+      case 'Plastic Love':
+        return(<PlasticLove/>)
       default:
         return null
     }
@@ -61,12 +69,16 @@ class Window extends Component {
         <Draggable
           handle=".handle"
           bounds="body"
-          position={null}
+          position= {null}
           defaultPosition={{x:100,y:100}}
         >
             <div
               className="window inverted-border clearfix"
-              style={{width: this.state.width + 'px', height: this.state.height + 'px'}}
+              style={{
+                width: this.state.width + 'px',
+                height: this.state.height + 'px',
+                position: 'absolute'
+              }}
             >
               <div className="bluebar handle"><span className="window-name">{this.props.name}</span>
                 <button

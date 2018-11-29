@@ -8,6 +8,7 @@
   width: 80%;
   margin-top: 3%;
   resize: none;
+  display: inline-block;
 }
 
 form {

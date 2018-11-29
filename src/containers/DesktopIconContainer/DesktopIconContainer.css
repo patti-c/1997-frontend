@@ -3,6 +3,7 @@
   margin: 20px;
   top: 0px;
   position: absolute;
+  color: white;
 }
 
 .desktop-icon {
@@ -14,4 +15,8 @@
 .icon-image {
   display: block;
   margin: auto;
+}
+
+.multiline-label {
+  display: inline-block;
 }

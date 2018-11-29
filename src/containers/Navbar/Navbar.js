@@ -8,7 +8,6 @@ class Navbar extends Component {
       <div className="navbar">
         <Clock />
       </div>
-
     )
   }
 }

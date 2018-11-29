@@ -5,6 +5,7 @@ import Draggable from 'react-draggable'
 import FriendsContainer from '../FriendsContainer/FriendsContainer'
 import About from '../../components/About/About'
 import PlasticLove from '../../components/PlasticLove/PlasticLove'
+import WebbernetDiscoverer from '../WebbernetDiscoverer/WebbernetDiscoverer'
 import { connect } from 'react-redux'
 // import { Resizable } from 'react-resizable'
 import { closeWindow } from '../../redux/actions'
@@ -40,6 +41,13 @@ class Window extends Component {
           width: 280,
           height: 360
         })
+        break;
+      case 'WebberNet Discoverer':
+        this.setState({
+          width: 601,
+          height: 601
+        })
+        break;
       default:
         return null
     }
@@ -58,6 +66,8 @@ class Window extends Component {
         return(<About/>)
       case 'Plastic Love':
         return(<PlasticLove/>)
+      case 'WebberNet Discoverer':
+        return(<WebbernetDiscoverer/>)
       default:
         return null
     }
@@ -100,15 +110,3 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(null, mapDispatchToProps)(Window)
-
-
-//put directly inside draggable
-// <Resizable
-//   className="box"
-//   height={this.state.height}
-//   width={this.state.width}
-//   onResize={this.onResize}
-//   minConstraints={[450,310]}
-// >
-//
-// </Resizable>

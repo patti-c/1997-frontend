@@ -20,7 +20,7 @@ class FriendRequestForm extends Component {
 
   onSubmit = e => {
     e.preventDefault()
-    if(this.state.searchText != '') {
+    if(this.state.searchText !== '') {
       const token = localStorage.getItem('token')
       const payload = {
         adder: this.props.adder,

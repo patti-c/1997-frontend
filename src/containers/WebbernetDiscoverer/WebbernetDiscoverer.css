@@ -1,0 +1,25 @@
+.web-search {
+  border: 1px solid darkgrey;
+  padding: 2px;
+}
+
+.web-search-input {
+  width: 441px;
+  vertical-align: middle;
+}
+
+.nav-button {
+  margin-bottom: 7px;
+  margin-left: 3px;
+}
+
+.webber-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.webber-iframe {
+  width: fill;
+  height: 500px;
+}

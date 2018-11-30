@@ -17,7 +17,8 @@ const userReducer = (state={}, action) => {
   switch(action.type) {
     case 'LOGIN_USER':
       return {
-        ...action.payload.user,
+        username: action.payload.user.username,
+        name: action.payload.user.name,
         friend_requests: {
           pending_requests: action.payload.pending_requests,
           desired_friendships: action.payload.desired_friendships
@@ -39,9 +40,45 @@ const userReducer = (state={}, action) => {
   }
 }
 
+const friendsReducer = (state=[], action) => {
+  switch(action.type) {
+    case 'LOGIN_USER':
+      return action.payload.user.friends
+    case 'LOGOUT_USER':
+      return []
+      case 'LOGIN_FRIEND':
+        newState = [...state]
+        newState.map(function(friend) {
+          if(friend.username === action.friend) {
+            friend.online = true
+            return friend
+          } else {
+            return friend
+          }
+        })
+        return newState
+        break;
+      case 'LOGOUT_FRIEND':
+        newState = [...state]
+        newState.map(function(friend) {
+          if(friend.username === action.friend) {
+            friend.online = false
+            return friend
+          } else {
+            return friend
+          }
+        })
+        return newState
+        break;
+    default:
+      return state
+  }
+}
+
 const rootReducer = combineReducers({
   windows: windowReducer,
-  user: userReducer
+  user: userReducer,
+  friends: friendsReducer
 })
 
 export default rootReducer

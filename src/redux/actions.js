@@ -22,4 +22,21 @@ function denyFriendRequest(friend) {
   return { type: 'DENY_REQUEST', friend }
 }
 
-export { openWindow, closeWindow, loginUser, logoutUser, acceptFriendRequest, denyFriendRequest }
+function loginFriend(friend) {
+  return { type: 'LOGIN_FRIEND', friend }
+}
+
+function logoutFriend(friend) {
+  return { type: 'LOGOUT_FRIEND', friend }
+}
+
+export {
+  openWindow,
+  closeWindow,
+  loginUser,
+  logoutUser,
+  acceptFriendRequest,
+  denyFriendRequest,
+  loginFriend,
+  logoutFriend
+}

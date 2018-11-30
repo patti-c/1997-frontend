@@ -1,14 +1,29 @@
-import React from 'react'
+import React, { Component } from 'react'
 import './StartButton.css'
-import globe from '../../assets/icons/globe-mouse.png'
+import { connect } from 'react-redux'
+import { openWindow } from '../../redux/actions'
+import starticon from '../../assets/icons/settings-gear.png'
 
-const StartButton = () => {
-  return(
-    <button className="start-button standard-button inverted-border">
-      <img src={globe} alt="globe icon" className="start-icon"/>
-      Start
-    </button>
-  )
+class StartButton extends Component {
+
+  render() {
+    return(
+      <button
+        className="start-button standard-button inverted-border"
+        onClick={() => this.props.openWindow({name: 'Settings'})}
+      >
+        <img src={starticon} alt="start icon" className="start-icon"/>
+        Settings
+      </button>
+    )
+  }
+
 }
 
-export default StartButton
+const mapDispatchToProps = dispatch => {
+  return {
+    openWindow: (windowName) => dispatch( openWindow(windowName) )
+  }
+}
+
+export default connect(null, mapDispatchToProps)(StartButton)

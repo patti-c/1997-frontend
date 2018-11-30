@@ -34,13 +34,13 @@ class Conversation extends Component {
       <div className="conversation">
       {this.state.conversation ?
         <>
-        <ActionCable
-          channel={{ channel: 'MessagesChannel',
-                     conversation: this.state.conversation.id}}
-          onReceived = {this.handleReceivedMessage}
-        />
-        <MessageBox conversation={this.state.conversation} messages={this.state.messages} />
-        <Chatbox user={this.props.user} conversation = {this.state.conversation}/>
+          <ActionCable
+            channel={{ channel: 'MessagesChannel',
+                       conversation: this.state.conversation.id}}
+            onReceived = {this.handleReceivedMessage}
+          />
+          <MessageBox conversation={this.state.conversation} messages={this.state.messages} />
+          <Chatbox user={this.props.user} conversation = {this.state.conversation}/>
         </>
         :
         null}

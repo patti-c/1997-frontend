@@ -1,5 +1,6 @@
 .start-icon {
-  height: 15px;
+  height: 25px;
   margin-right: 5px;
-  margin-top: 1px;
+  margin-top: 0px;
+  vertical-align: middle;
 }

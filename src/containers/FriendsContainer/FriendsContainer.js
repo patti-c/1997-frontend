@@ -1,22 +1,50 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import uuid from 'uuid'
 import FriendListItem from '../../components/FriendListItem/FriendListItem'
 import FriendRequestItem from '../../components/FriendRequestItem/FriendRequestItem'
 import FriendRequestForm from '../../components/FriendRequestForm/FriendRequestForm'
+import { ActionCable } from 'react-actioncable-provider'
 import './FriendsContainer.css'
-import { openWindow } from '../../redux/actions'
+import { openWindow, loginFriend, logoutFriend } from '../../redux/actions'
 import headerImage from '../../assets/images/instantmessaging.png'
 
 class FriendsContainer extends Component {
 
   renderFriendsList() {
     return this.props.friends.map(friend =>
-      <FriendListItem
-        openWindow={this.props.openWindow}
-        key={friend.username}
-        friend={friend}
-        handleReceivedMessage = {this.handleReceivedMessage}
-      />)
+      <>
+        <FriendListItem
+          openWindow={this.props.openWindow}
+          key={friend.username}
+          friend={friend}
+          handleReceivedMessage = {this.handleReceivedMessage}
+          online={friend.online}
+        />
+        <ActionCable
+          key={uuid()}
+          channel={{ channel: 'UsersChannel',
+                     username: friend.username}}
+          onReceived = {(response) => this.setLoginStatus(response, friend.username)}
+        />
+      </>
+    )
+  }
+
+  setLoginStatus(response, friend) {
+    if(response === 'online') {
+      this.handleFriendLogin(friend)
+    } else {
+      this.handleFriendLogout(friend)
+    }
+  }
+
+  handleFriendLogout(friend) {
+    this.props.logoutFriend(friend)
+  }
+
+  handleFriendLogin(friend) {
+    this.props.loginFriend(friend)
   }
 
   renderPendingRequests() {
@@ -52,9 +80,9 @@ class FriendsContainer extends Component {
 }
 
 const mapStateToProps = state => {
-  if(state.user.friends) {
+  if(state.friends) {
     return {
-      friends: state.user.friends,
+      friends: state.friends,
       pending_requests: state.user.friend_requests.pending_requests,
       username: state.user.username
     }
@@ -63,7 +91,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    openWindow: (payload) => dispatch( openWindow(payload) )
+    openWindow: (payload) => dispatch( openWindow(payload) ),
+    loginFriend: (friend) => dispatch ( loginFriend(friend) ),
+    logoutFriend: (friend) => dispatch ( logoutFriend(friend) )
   }
 }
 

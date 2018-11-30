@@ -2,11 +2,16 @@ import React, { Component } from 'react'
 import './SignedIn.css'
 import { logoutUser } from '../../redux/actions'
 import { connect } from 'react-redux'
+import Adapter from '../../Adapter'
+const api = new Adapter()
 
 class SignedIn extends Component {
 
   logout = () => {
+    let token = localStorage.getItem('token')
+    api.postWithTokenWithoutJson(token, 'logout')
     localStorage.removeItem('token')
+
     this.props.logoutUser()
   }
 

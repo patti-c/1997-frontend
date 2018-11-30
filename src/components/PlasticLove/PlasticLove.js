@@ -42,7 +42,7 @@ class PlasticLove extends Component {
   render() {
     return (
       <>
-        <img className="album-cover oldschool-border" src={albumcover}/>
+        <img alt="plastic love album cover" className="album-cover oldschool-border" src={albumcover}/>
         <button onClick={this.onClick} className="music-player inverted-border standard-button">
           {this.state.playing ? '❚❚' : '►'}
         </button>

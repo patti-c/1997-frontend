@@ -3,6 +3,7 @@ import Signin from '../Signin/Signin'
 import Conversation from '../Conversation/Conversation'
 import Draggable from 'react-draggable'
 import FriendsContainer from '../FriendsContainer/FriendsContainer'
+import SettingsContainer from '../SettingsContainer/SettingsContainer'
 import About from '../../components/About/About'
 import PlasticLove from '../../components/PlasticLove/PlasticLove'
 import WebbernetDiscoverer from '../WebbernetDiscoverer/WebbernetDiscoverer'
@@ -68,6 +69,8 @@ class Window extends Component {
         return(<PlasticLove/>)
       case 'WebberNet Discoverer':
         return(<WebbernetDiscoverer/>)
+      case 'Settings':
+        return(<SettingsContainer/>)
       default:
         return null
     }

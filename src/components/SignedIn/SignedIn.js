@@ -11,7 +11,6 @@ class SignedIn extends Component {
     let token = localStorage.getItem('token')
     api.postWithTokenWithoutJson(token, 'logout')
     localStorage.removeItem('token')
-
     this.props.logoutUser()
   }
 

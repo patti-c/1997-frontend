@@ -38,7 +38,7 @@ class DesktopIconContainer extends Component {
       <div className="desktop-icons-container">
         <div className="desktop-icon" onDoubleClick={() => this.props.openWindow({name: 'Sign In'})}>
           <DesktopIcon fileName={'windowsglobe'}/>
-          <label>Sign in</label>
+          <label>{this.props.username ? 'Sign out ': 'Sign in'}</label>
         </div>
         <div className="desktop-icon" onDoubleClick={() => this.props.openWindow({name: 'About'})}>
           <DesktopIcon fileName={'largehelpbook'}/>
@@ -69,10 +69,14 @@ class DesktopIconContainer extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return { username: state.user.username }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     openWindow: (windowName) => dispatch( openWindow(windowName) )
   }
 }
 
-export default connect(null, mapDispatchToProps)(DesktopIconContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(DesktopIconContainer)

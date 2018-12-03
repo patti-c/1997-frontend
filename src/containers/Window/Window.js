@@ -6,6 +6,7 @@ import FriendsContainer from '../FriendsContainer/FriendsContainer'
 import SettingsContainer from '../SettingsContainer/SettingsContainer'
 import About from '../../components/About/About'
 import PlasticLove from '../../components/PlasticLove/PlasticLove'
+import MustBeSignedInMessage from '../../components/MustBeSignedInMessage/MustBeSignedInMessage'
 import WebbernetDiscoverer from '../WebbernetDiscoverer/WebbernetDiscoverer'
 import { connect } from 'react-redux'
 // import { Resizable } from 'react-resizable'
@@ -60,7 +61,9 @@ class Window extends Component {
       case 'Sign In':
         return(<Signin />)
       case 'Friends List':
-        return(<FriendsContainer />)
+        return(this.props.username ?
+          <FriendsContainer /> :
+          <MustBeSignedInMessage /> )
       case 'Conversation':
         return(<Conversation data={this.props.data}/>)
       case 'About':
@@ -70,7 +73,10 @@ class Window extends Component {
       case 'WebberNet Discoverer':
         return(<WebbernetDiscoverer/>)
       case 'Settings':
-        return(<SettingsContainer id={this.props.id}/>)
+        return(this.props.username ?
+          <SettingsContainer id={this.props.id}/>:
+          <MustBeSignedInMessage/>
+        )
       default:
         return null
     }
@@ -108,6 +114,10 @@ class Window extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return { username: state.user.username }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     closeWindow: (windowId) => dispatch( closeWindow(windowId) ),
@@ -115,4 +125,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Window)
+export default connect(mapStateToProps, mapDispatchToProps)(Window)

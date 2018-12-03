@@ -30,6 +30,10 @@ function logoutFriend(friend) {
   return { type: 'LOGOUT_FRIEND', friend }
 }
 
+function modifySettings(settings) {
+  return { type: 'MODIFY_SETTINGS', settings }
+}
+
 export {
   openWindow,
   closeWindow,
@@ -38,5 +42,6 @@ export {
   acceptFriendRequest,
   denyFriendRequest,
   loginFriend,
-  logoutFriend
+  logoutFriend,
+  modifySettings
 }

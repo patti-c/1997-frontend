@@ -21,7 +21,7 @@ const userReducer = (state={}, action) => {
         name: action.payload.user.name,
         online: action.payload.user.online,
         hidden: action.payload.user.hidden,
-        muted: action.payload.user.sound_muted,
+        muted: action.payload.user.muted,
         friend_requests: {
           pending_requests: action.payload.pending_requests,
           desired_friendships: action.payload.desired_friendships
@@ -38,6 +38,12 @@ const userReducer = (state={}, action) => {
       newState = state
       newState.friend_requests.pending_requests = newState.friend_requests.pending_requests.filter(req => req !== action.friend)
       return newState
+    case 'MODIFY_SETTINGS':
+      newState = state
+      newState.hidden = action.settings.hidden
+      newState.muted = action.settings.muted
+      return newState
+      break;
     default:
       return state
   }

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './SettingsContainer.css'
 import Adapter from '../../Adapter'
 import { connect } from 'react-redux'
-import { closeWindow } from '../../redux/actions'
+import { closeWindow, modifySettings } from '../../redux/actions'
 const api = new Adapter()
 
 class SettingsContainer extends Component {
@@ -18,11 +18,19 @@ class SettingsContainer extends Component {
   submitChanges = e => {
     let token = localStorage.getItem('token')
     this.state.hidden ? api.postWithTokenWithoutJson(token, 'hide') : api.postWithTokenWithoutJson(token, 'unhide')
+    this.state.muted ? api.postWithTokenWithoutJson(token, 'mute') : api.postWithTokenWithoutJson(token, 'unmute')
+    this.props.modifySettings(this.state)
   }
 
   toggleHidden = () => {
     this.setState({
       hidden: !this.state.hidden
+    })
+  }
+
+  toggleMuted = () => {
+    this.setState({
+      muted: !this.state.muted
     })
   }
 
@@ -32,7 +40,7 @@ class SettingsContainer extends Component {
         <div className="settings-menu inverted-border">
           <div className="option">Show friends when I'm online?
             <span onClick={this.toggleHidden} className="checkbox settings-check">
-              {!this.state.hidden === false ? <div className="checkmark">✓</div> : null}
+              {this.state.hidden === true ? null : <div className="checkmark">✓</div>}
             </span>
           </div>
           <div className="option">Mute sounds?
@@ -59,7 +67,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    closeWindow: (windowId) => dispatch( closeWindow(windowId) )
+    closeWindow: (windowId) => dispatch( closeWindow(windowId) ),
+    modifySettings: (settings) => dispatch( modifySettings(settings) )
   }
 }
 

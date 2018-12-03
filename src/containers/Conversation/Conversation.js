@@ -17,7 +17,7 @@ class Conversation extends Component {
   }
 
   handleReceivedMessage = response => {
-    if(this.state.sound) {
+    if(this.state.sound && !this.props.muted) {
       this.state.sound.play()
     }
     const { message } = response;
@@ -63,7 +63,10 @@ class Conversation extends Component {
 }
 
 const mapStateToProps = state => {
-  return {user: state.user.username}
+  return {
+    user: state.user.username,
+    muted: state.user.muted
+  }
 }
 
 export default connect(mapStateToProps)(Conversation)

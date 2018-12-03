@@ -4,6 +4,7 @@ import Adapter from '../../Adapter'
 import LoginForm from '../../components/LoginForm/LoginForm'
 import CreateUserForm from '../../components/CreateUserForm/CreateUserForm'
 import SignedIn from '../../components/SignedIn/SignedIn'
+import startupsound from '../../assets/sound/95startup.mp3'
 import { connect } from 'react-redux'
 import { loginUser } from '../../redux/actions'
 import icon from '../../assets/icons/computer.png'
@@ -58,9 +59,13 @@ class Signin extends Component {
   }
 
   attemptLogin = (e, userData) => {
+    const sound = new Audio(startupsound)
     e.preventDefault()
     api.genericPost('login', {user: userData}).then(json =>
       {if(json.jwt) {
+        if(!this.props.user.muted) {
+          sound.play()
+        }
         localStorage.setItem('token', json.jwt)
         this.props.loginUser(json)
       }}

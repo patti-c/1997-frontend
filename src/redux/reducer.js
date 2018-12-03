@@ -1,13 +1,25 @@
 import { combineReducers } from 'redux'
 import uuid from 'uuid'
 let newState
+let greatestZ = 0
 
 const windowReducer = (state=[], action) => {
   switch (action.type) {
     case 'OPEN_WINDOW':
-      return [...state, {name: action.payload.name, data: action.payload.data, id: uuid()}]
+      return [...state,
+        {name: action.payload.name,
+          data: action.payload.data,
+          id: uuid(),
+          z: 0}
+        ]
     case 'CLOSE_WINDOW':
       return state.filter(w => w.id !== action.windowId)
+    case 'FRONT_WINDOW':
+      return state.map(function(w) {
+        if(w.id === action.windowId) {w.z = greatestZ++}
+        return w
+      })
+      break;
     default:
       return state
   }

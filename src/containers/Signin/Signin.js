@@ -55,12 +55,21 @@ class Signin extends Component {
 
   attemptCreation = (e, userData) => {
     e.preventDefault()
-    api.genericPost('users', {user: userData})
+    const sound = new Audio(startupsound)
+    api.genericPost('users', {user: userData}).then(json =>
+      {if(json.jwt) {
+        if(!this.props.user.muted) {
+          sound.play()
+        }
+        localStorage.setItem('token', json.jwt)
+        this.props.loginUser(json)
+      }}
+    )
   }
 
   attemptLogin = (e, userData) => {
-    const sound = new Audio(startupsound)
     e.preventDefault()
+    const sound = new Audio(startupsound)
     api.genericPost('login', {user: userData}).then(json =>
       {if(json.jwt) {
         if(!this.props.user.muted) {

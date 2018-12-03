@@ -9,7 +9,7 @@ import PlasticLove from '../../components/PlasticLove/PlasticLove'
 import WebbernetDiscoverer from '../WebbernetDiscoverer/WebbernetDiscoverer'
 import { connect } from 'react-redux'
 // import { Resizable } from 'react-resizable'
-import { closeWindow } from '../../redux/actions'
+import { closeWindow, frontWindow } from '../../redux/actions'
 import './Window.css'
 
 class Window extends Component {
@@ -90,8 +90,10 @@ class Window extends Component {
               style={{
                 width: this.state.width + 'px',
                 height: this.state.height + 'px',
-                position: 'absolute'
+                position: 'absolute',
+                zIndex: this.props.z
               }}
+              onClick={() => this.props.frontWindow(this.props.id)}
             >
               <div className="bluebar handle"><span className="window-name">{this.props.name}</span>
                 <button
@@ -108,7 +110,8 @@ class Window extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    closeWindow: (windowId) => dispatch( closeWindow(windowId) )
+    closeWindow: (windowId) => dispatch( closeWindow(windowId) ),
+    frontWindow: (windowId) => dispatch( frontWindow(windowId) )
   }
 }
 

@@ -34,6 +34,10 @@ function modifySettings(settings) {
   return { type: 'MODIFY_SETTINGS', settings }
 }
 
+function frontWindow(windowId) {
+  return { type: 'FRONT_WINDOW', windowId }
+}
+
 export {
   openWindow,
   closeWindow,
@@ -43,5 +47,6 @@ export {
   denyFriendRequest,
   loginFriend,
   logoutFriend,
-  modifySettings
+  modifySettings,
+  frontWindow
 }

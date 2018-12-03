@@ -7,10 +7,11 @@ const api = new Adapter()
 
 class SettingsContainer extends Component {
 
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
-      hidden: false
+      hidden: props.hidden,
+      muted: props.muted
     }
   }
 
@@ -31,7 +32,12 @@ class SettingsContainer extends Component {
         <div className="settings-menu inverted-border">
           <div className="option">Show friends when I'm online?
             <span onClick={this.toggleHidden} className="checkbox settings-check">
-              {this.state.hidden === false ? <div className="checkmark">✓</div> : null}
+              {!this.state.hidden === false ? <div className="checkmark">✓</div> : null}
+            </span>
+          </div>
+          <div className="option">Mute sounds?
+            <span onClick={this.toggleMuted} className="checkbox settings-check">
+              {this.state.muted === true ? <div className="checkmark">✓</div> : null}
             </span>
           </div>
         </div>
@@ -44,10 +50,17 @@ class SettingsContainer extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    muted: state.user.muted,
+    hidden: state.user.hidden
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     closeWindow: (windowId) => dispatch( closeWindow(windowId) )
   }
 }
 
-export default connect(null, mapDispatchToProps)(SettingsContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(SettingsContainer)

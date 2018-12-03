@@ -12,12 +12,14 @@ class Conversation extends Component {
 
   state = {
     conversation: null,
-    messages: []
+    messages: [],
+    sound: null
   }
 
   handleReceivedMessage = response => {
-    const sound = new Audio(bing)
-    sound.play()
+    if(this.state.sound) {
+      this.state.sound.play()
+    }
     const { message } = response;
     this.setState({ messages: [...this.state.messages, message] });
   };
@@ -32,9 +34,16 @@ class Conversation extends Component {
       }))
   }
 
+  loadSound = () => {
+    let sound = new Audio(bing)
+    this.setState({
+      sound: sound
+    })
+  }
+
   render() {
     return (
-      <div className="conversation">
+      <div className="conversation" onClick={this.loadSound}>
       {this.state.conversation ?
         <>
           <ActionCable

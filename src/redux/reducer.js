@@ -19,6 +19,9 @@ const userReducer = (state={}, action) => {
       return {
         username: action.payload.user.username,
         name: action.payload.user.name,
+        online: action.payload.user.online,
+        hidden: action.payload.user.hidden,
+        muted: action.payload.user.sound_muted,
         friend_requests: {
           pending_requests: action.payload.pending_requests,
           desired_friendships: action.payload.desired_friendships

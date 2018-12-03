@@ -5,6 +5,7 @@ import MessageBox from '../MessageBox/MessageBox'
 import { ActionCable } from 'react-actioncable-provider';
 import Adapter from '../../Adapter'
 import { connect } from 'react-redux'
+import bing from '../../assets/sound/im.mp3'
 const api = new Adapter()
 
 class Conversation extends Component {
@@ -15,6 +16,8 @@ class Conversation extends Component {
   }
 
   handleReceivedMessage = response => {
+    const sound = new Audio(bing)
+    sound.play()
     const { message } = response;
     this.setState({ messages: [...this.state.messages, message] });
   };

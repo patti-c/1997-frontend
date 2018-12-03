@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './SignedIn.css'
 import { logoutUser } from '../../redux/actions'
 import { connect } from 'react-redux'
+import startupsound from '../../assets/sound/95startup.mp3'
 import Adapter from '../../Adapter'
 const api = new Adapter()
 
@@ -12,6 +13,11 @@ class SignedIn extends Component {
     api.postWithTokenWithoutJson(token, 'logout')
     localStorage.removeItem('token')
     this.props.logoutUser()
+  }
+
+  componentDidMount = () => {
+    const sound = new Audio(startupsound)
+    sound.play()
   }
 
   render() {
@@ -27,7 +33,7 @@ class SignedIn extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    logoutUser: () => dispatch(logoutUser())
+    logoutUser: () => dispatch( logoutUser() )
   }
 }
 

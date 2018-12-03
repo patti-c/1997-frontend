@@ -70,7 +70,7 @@ class Window extends Component {
       case 'WebberNet Discoverer':
         return(<WebbernetDiscoverer/>)
       case 'Settings':
-        return(<SettingsContainer/>)
+        return(<SettingsContainer id={this.props.id}/>)
       default:
         return null
     }

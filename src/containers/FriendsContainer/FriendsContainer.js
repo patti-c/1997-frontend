@@ -16,7 +16,7 @@ class FriendsContainer extends Component {
       <>
         <FriendListItem
           openWindow={this.props.openWindow}
-          key={friend.username}
+          key={uuid()}
           friend={friend}
           handleReceivedMessage = {this.handleReceivedMessage}
           online={friend.online}
@@ -33,8 +33,10 @@ class FriendsContainer extends Component {
 
   setLoginStatus(response, friend) {
     if(response === 'online') {
+      console.log(`${friend} is now online`)
       this.handleFriendLogin(friend)
     } else {
+      console.log(`${friend} is now offline`)
       this.handleFriendLogout(friend)
     }
   }
@@ -48,7 +50,7 @@ class FriendsContainer extends Component {
   }
 
   renderPendingRequests() {
-    return this.props.pending_requests.map(request =>
+    return this.props.friend_requests.pending_requests.map(request =>
       <FriendRequestItem key={request} adder={request} added={this.props.username}/>
     )
   }
@@ -64,7 +66,7 @@ class FriendsContainer extends Component {
               Friend Requests
             </p>
             <ul className="friends-list-ul">
-              {this.props.pending_requests ? this.renderPendingRequests() : null}
+              {this.props.friend_requests ? this.renderPendingRequests() : null}
             </ul>
             <p className="your-friends-header">
               Your Friends
@@ -83,7 +85,7 @@ const mapStateToProps = state => {
   if(state.friends) {
     return {
       friends: state.friends,
-      pending_requests: state.user.friend_requests.pending_requests,
+      friend_requests: state.user.friend_requests,
       username: state.user.username
     }
   }

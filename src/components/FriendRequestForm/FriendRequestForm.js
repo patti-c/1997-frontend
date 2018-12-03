@@ -27,12 +27,14 @@ class FriendRequestForm extends Component {
         added: this.state.searchText
       }
 
-      api.postWithTokenWithoutJson(token, '/send_friend_request', payload)
-        .then(
+      api.postWithToken(token, '/send_friend_request', payload)
+        .then(json => {
+          console.log(json)
           this.setState({
             searchText: ''
           })
-        )
+          alert(json.message)
+        })
     }
   }
 

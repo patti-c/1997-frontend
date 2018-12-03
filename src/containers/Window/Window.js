@@ -15,7 +15,7 @@ import './Window.css'
 
 class Window extends Component {
 
-  state = {width: 450, height: 340}
+  state = {width: 450, height: 340, z: 0}
 
   onResize = (event, {element, size}) => {
     this.setState({width: size.width, height: size.height});
@@ -53,6 +53,15 @@ class Window extends Component {
       default:
         return null
     }
+  }
+
+  moveToFront = () => {
+    let newZ = 0
+    this.props.windows.forEach(function(w) {
+      if(w.z > newZ) {newZ = (w.z + 1)}
+    })
+    this.props.frontWindow(this.props.id)
+    this.setState({z: newZ})
   }
 
   renderWindow() {
@@ -97,12 +106,12 @@ class Window extends Component {
                 width: this.state.width + 'px',
                 height: this.state.height + 'px',
                 position: 'absolute',
-                zIndex: this.props.z
+                zIndex: this.state.z
               }}
-              onClick={() => this.props.frontWindow(this.props.id)}
+              onClick={this.moveToFront}
             >
               <div className="bluebar handle"><span className="window-name">
-                {this.props.data ? `Chat with ${this.props.data.username}` : this.props.name}
+                {(this.props.data && this.props.data.username) ? `Chat with ${this.props.data.username}` : this.props.name}
               </span>
                 <button
                   className="standard-button close-window inverted-border"
@@ -117,7 +126,10 @@ class Window extends Component {
 }
 
 const mapStateToProps = state => {
-  return { username: state.user.username }
+  return {
+    username: state.user.username,
+    windows: state.windows
+  }
 }
 
 const mapDispatchToProps = dispatch => {

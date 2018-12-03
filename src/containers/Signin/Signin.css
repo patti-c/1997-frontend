@@ -16,6 +16,16 @@
   width: 80px;
 }
 
+.form {
+  height: 60%;
+}
+
+.error {
+  text-align: center;
+  color: red;
+  margin-left: 15px;
+}
+
 .buttons {
   /* margin: 0; */
   /* position: absolute;

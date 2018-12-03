@@ -15,7 +15,8 @@ class Signin extends Component {
   constructor() {
     super()
     this.state = {
-      rightColumn: false
+      rightColumn: false,
+      error: null
     }
   }
 
@@ -23,8 +24,11 @@ class Signin extends Component {
     switch(this.state.rightColumn) {
       case 'login':
         return(
-          <><label>Log in</label>
-          <LoginForm submit={this.attemptLogin} /></>
+          <>
+            <label>Log in</label>
+            <LoginForm submit={this.attemptLogin} />
+            <div className="error">{this.state.error}</div>
+          </>
         )
       case 'create':
         return (
@@ -70,13 +74,15 @@ class Signin extends Component {
   attemptLogin = (e, userData) => {
     e.preventDefault()
     const sound = new Audio(startupsound)
-    api.genericPost('login', {user: userData}).then(json =>
-      {if(json.jwt) {
+    api.genericPost('login', {user: userData}).then(json => {
+      if(json.jwt) {
         if(!this.props.user.muted) {
           sound.play()
         }
         localStorage.setItem('token', json.jwt)
         this.props.loginUser(json)
+      } else {
+        this.setState({error: json.message})
       }}
     )
   }

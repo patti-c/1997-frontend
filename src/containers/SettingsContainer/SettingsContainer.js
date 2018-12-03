@@ -20,6 +20,7 @@ class SettingsContainer extends Component {
     this.state.hidden ? api.postWithTokenWithoutJson(token, 'hide') : api.postWithTokenWithoutJson(token, 'unhide')
     this.state.muted ? api.postWithTokenWithoutJson(token, 'mute') : api.postWithTokenWithoutJson(token, 'unmute')
     this.props.modifySettings(this.state)
+    this.props.closeWindow(this.props.id)
   }
 
   toggleHidden = () => {
@@ -43,7 +44,7 @@ class SettingsContainer extends Component {
               {this.state.hidden === true ? null : <div className="checkmark">✓</div>}
             </span>
           </div>
-          <div className="option">Mute sounds?
+          <div className="option">Mute chat sounds?
             <span onClick={this.toggleMuted} className="checkbox settings-check">
               {this.state.muted === true ? <div className="checkmark">✓</div> : null}
             </span>

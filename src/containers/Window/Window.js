@@ -101,7 +101,9 @@ class Window extends Component {
               }}
               onClick={() => this.props.frontWindow(this.props.id)}
             >
-              <div className="bluebar handle"><span className="window-name">{this.props.name}</span>
+              <div className="bluebar handle"><span className="window-name">
+                {this.props.data ? `Chat with ${this.props.data.username}` : this.props.name}
+              </span>
                 <button
                   className="standard-button close-window inverted-border"
                   onClick={() => this.props.closeWindow(this.props.id)}

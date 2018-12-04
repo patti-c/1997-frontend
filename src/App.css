@@ -4,6 +4,11 @@
     display: table;
 }
 
+.large-button {
+  width: 100px;
+  font-size: 1.3em;
+}
+
 .checkbox {
   position: absolute;
   top: inherit;

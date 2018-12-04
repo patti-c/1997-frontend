@@ -32,6 +32,7 @@ class FriendsContainer extends Component {
   }
 
   setLoginStatus(response, friend) {
+    console.log(response)
     if(response === 'online') {
       console.log(`${friend} is now online`)
       this.handleFriendLogin(friend)
@@ -65,6 +66,11 @@ class FriendsContainer extends Component {
             <p className="your-friends-header">
               Friend Requests
             </p>
+            <ActionCable
+              key={uuid()}
+              channel={{ channel: 'UsersChannel',
+                         user: this.props.username}}
+              onReceived = {(response) => console.log(response)}/>
             <ul className="friends-list-ul">
               {this.props.friend_requests ? this.renderPendingRequests() : null}
             </ul>

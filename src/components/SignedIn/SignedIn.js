@@ -19,7 +19,7 @@ class SignedIn extends Component {
     return (
       <div className="signed-in">
         <h3>You have been signed in</h3>
-        <button onClick={this.logout} className="standard-button inverted-border">Sign Out</button>
+        <button onClick={this.logout} className="large-button standard-button inverted-border">Sign Out</button>
       </div>
     )
   }

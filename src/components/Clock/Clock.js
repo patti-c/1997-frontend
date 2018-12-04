@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './Clock.css'
+import clock from '../../assets/icons/clock-1.png'
 
 class Clock extends Component {
 
@@ -46,6 +47,7 @@ class Clock extends Component {
   render() {
     return (
       <div className="clock oldschool-border">
+        <img className="clock-icon" src={clock}/>
         {this.state.hour}:{this.state.minutes} {this.state.ampm}
       </div>
     )

@@ -10,6 +10,7 @@ class FriendListItem extends Component {
   render() {
     return(
       <li
+        
         onClick={() => this.props.openWindow({name: 'Conversation', data: this.props.friend})}
       >
         <span className="dot" style={{backgroundColor: this.checkOnline()}}></span>{this.props.friend.username}

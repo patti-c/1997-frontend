@@ -13,7 +13,7 @@ class FriendsContainer extends Component {
 
   renderFriendsList() {
     return this.props.friends.map(friend =>
-      <>
+      <span key={uuid()}>
         <FriendListItem
           openWindow={this.props.openWindow}
           key={uuid()}
@@ -27,7 +27,7 @@ class FriendsContainer extends Component {
                      username: friend.username}}
           onReceived = {(response) => this.setLoginStatus(response, friend.username)}
         />
-      </>
+      </span>
     )
   }
 
@@ -52,7 +52,7 @@ class FriendsContainer extends Component {
 
   renderPendingRequests() {
     return this.props.friend_requests.pending_requests.map(request =>
-      <FriendRequestItem key={request} adder={request} added={this.props.username}/>
+      <FriendRequestItem key={uuid()} adder={request} added={this.props.username}/>
     )
   }
 
@@ -66,11 +66,6 @@ class FriendsContainer extends Component {
             <p className="your-friends-header">
               Friend Requests
             </p>
-            <ActionCable
-              key={uuid()}
-              channel={{ channel: 'UsersChannel',
-                         user: this.props.username}}
-              onReceived = {(response) => console.log(response)}/>
             <ul className="friends-list-ul">
               {this.props.friend_requests ? this.renderPendingRequests() : null}
             </ul>
@@ -106,3 +101,11 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FriendsContainer)
+
+
+
+// <ActionCable
+//   key={uuid()}
+//   channel={{ channel: 'UsersChannel',
+//              user: this.props.username}}
+//   onReceived = {(response) => console.log(response)}/>

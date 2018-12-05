@@ -22,6 +22,8 @@ class FriendsContainer extends Component {
           handleReceivedMessage = {this.handleReceivedMessage}
           online={friend.online}
         />
+        // These cables listen for friends coming online and offline to update
+        // the green or grey dot
         <ActionCable
           key={uuid()}
           channel={{ channel: 'UsersChannel',
@@ -56,14 +58,6 @@ class FriendsContainer extends Component {
       <FriendRequestItem key={uuid()} adder={request} added={this.props.username}/>
     )
   }
-
-  // componentDidMount() {
-  //   this.interval = setInterval(() => this.setState({ state: this.state }), 6000);
-  // }
-  //
-  // componentWillUnmount() {
-  //   clearInterval(this.interval);
-  // }
 
   render () {
     return (
@@ -110,11 +104,3 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FriendsContainer)
-
-
-
-// <ActionCable
-//   key={uuid()}
-//   channel={{ channel: 'UsersChannel',
-//              user: this.props.username}}
-//   onReceived = {(response) => console.log(response)}/>

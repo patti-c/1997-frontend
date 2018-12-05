@@ -19,7 +19,6 @@ const windowReducer = (state=[], action) => {
         if(w.id === action.windowId) {w.z = greatestZ++}
         return w
       })
-      break;
     default:
       return state
   }
@@ -55,7 +54,6 @@ const userReducer = (state={}, action) => {
       newState.hidden = action.settings.hidden
       newState.muted = action.settings.muted
       return newState
-      break;
     default:
       return state
   }
@@ -78,7 +76,6 @@ const friendsReducer = (state=[], action) => {
           }
         })
         return newState
-        break;
       case 'LOGOUT_FRIEND':
         newState = [...state]
         newState.map(function(friend) {
@@ -90,7 +87,6 @@ const friendsReducer = (state=[], action) => {
           }
         })
         return newState
-        break;
     default:
       return state
   }

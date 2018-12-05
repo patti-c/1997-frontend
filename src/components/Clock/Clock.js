@@ -47,7 +47,7 @@ class Clock extends Component {
   render() {
     return (
       <div className="clock oldschool-border">
-        <img className="clock-icon" src={clock}/>
+        <img alt="clock icon" className="clock-icon" src={clock}/>
         {this.state.hour}:{this.state.minutes} {this.state.ampm}
       </div>
     )

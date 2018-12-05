@@ -12,6 +12,7 @@ import headerImage from '../../assets/images/instantmessaging.png'
 class FriendsContainer extends Component {
 
   renderFriendsList() {
+    console.log('friends list ')
     return this.props.friends.map(friend =>
       <span key={uuid()}>
         <FriendListItem
@@ -55,6 +56,14 @@ class FriendsContainer extends Component {
       <FriendRequestItem key={uuid()} adder={request} added={this.props.username}/>
     )
   }
+
+  // componentDidMount() {
+  //   this.interval = setInterval(() => this.setState({ state: this.state }), 6000);
+  // }
+  //
+  // componentWillUnmount() {
+  //   clearInterval(this.interval);
+  // }
 
   render () {
     return (

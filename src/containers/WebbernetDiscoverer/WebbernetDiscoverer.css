@@ -20,6 +20,6 @@
 }
 
 .webber-iframe {
-  width: fill;
+  width: stretch;
   height: 500px;
 }

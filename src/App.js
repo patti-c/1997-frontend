@@ -5,7 +5,6 @@ import DesktopIconContainer from './containers/DesktopIconContainer/DesktopIconC
 import { loginUser } from './redux/actions'
 import { connect } from 'react-redux'
 import Window from './containers/Window/Window'
-import startupsound from './assets/sound/95startup.mp3'
 
 class App extends Component {
 

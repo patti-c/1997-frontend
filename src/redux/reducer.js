@@ -42,7 +42,6 @@ const userReducer = (state={}, action) => {
       return {}
     case 'ACCEPT_REQUEST':
       newState = state
-      newState.friends.push({username: action.friend})
       newState.friend_requests.pending_requests = newState.friend_requests.pending_requests.filter(req => req !== action.friend)
       return newState
     case 'DENY_REQUEST':
@@ -75,6 +74,10 @@ const friendsReducer = (state=[], action) => {
             return friend
           }
         })
+        return newState
+      case 'ACCEPT_REQUEST':
+        newState = state
+        newState.push({username: action.friend})
         return newState
       case 'LOGOUT_FRIEND':
         newState = [...state]

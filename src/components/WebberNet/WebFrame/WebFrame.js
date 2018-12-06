@@ -2,7 +2,7 @@ import React from 'react'
 
 const WebFrame = props => {
   return (
-    <iframe title="webbernet" className="webber-iframe" src="http://www.hamsterdance.org/hamsterdance/">WebFrame</iframe>
+    <iframe title="webbernet" className="webber-iframe" src="https://www.youtube.com/embed/6WpMlwVwydo">WebFrame</iframe>
   )
 }
 

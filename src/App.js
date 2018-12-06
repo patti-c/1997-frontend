@@ -16,13 +16,10 @@ class App extends Component {
   }
 
   renderWindows() {
-    // Redux keeps track of what windows are open. App iterates over that store
-    // to produce the correct windows.
     return this.props.windows.map(w => <Window key={w.id} name={w.name} id={w.id} data={w.data}/>)
   }
 
   componentDidMount(){
-    // If a JWT is found, a user is automatically logged in.
     let token = localStorage.getItem('token')
     if(token){
       fetch(`https://api-1997.herokuapp.com/api/v1/userdata`, {
@@ -33,6 +30,7 @@ class App extends Component {
         .then(json => {
           console.log(json)
           this.props.loginUser(json)
+
         })
     }
   }
@@ -50,7 +48,7 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { windows: state.windows }
+  return {windows: state.windows}
 }
 
 const mapDispatchToProps = dispatch => {

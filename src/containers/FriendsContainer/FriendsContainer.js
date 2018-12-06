@@ -57,6 +57,14 @@ class FriendsContainer extends Component {
     )
   }
 
+  // componentDidMount() {
+  //   this.interval = setInterval(() => this.setState({ state: this.state }), 6000);
+  // }
+  //
+  // componentWillUnmount() {
+  //   clearInterval(this.interval);
+  // }
+
   render () {
     return (
       <div className="friends-list-body">
@@ -102,3 +110,11 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FriendsContainer)
+
+
+
+// <ActionCable
+//   key={uuid()}
+//   channel={{ channel: 'UsersChannel',
+//              user: this.props.username}}
+//   onReceived = {(response) => console.log(response)}/>

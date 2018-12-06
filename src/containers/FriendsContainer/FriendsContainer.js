@@ -22,8 +22,6 @@ class FriendsContainer extends Component {
           handleReceivedMessage = {this.handleReceivedMessage}
           online={friend.online}
         />
-        // These cables listen for friends coming online and offline to update
-        // the green or grey dot
         <ActionCable
           key={uuid()}
           channel={{ channel: 'UsersChannel',

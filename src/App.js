@@ -25,7 +25,7 @@ class App extends Component {
     // If a JWT is found, a user is automatically logged in.
     let token = localStorage.getItem('token')
     if(token){
-      fetch(`http://localhost:3000/api/v1/userdata`, {
+      fetch(`https://api-1997.herokuapp.com/api/v1/userdata`, {
         headers: {
           "Authorization" : `Bearer ${token}`
         }

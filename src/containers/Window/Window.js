@@ -27,7 +27,7 @@ class Window extends Component {
       case 'Sign In':
         this.setState({
           height: 340,
-          width: 450
+          width: 502
         })
         break;
       case 'Friends List':
